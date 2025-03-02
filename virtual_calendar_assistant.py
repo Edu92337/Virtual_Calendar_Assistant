@@ -10,21 +10,21 @@ import pytz
 from dotenv import load_dotenv
 import os
 
-# Carregar variáveis de ambiente
+
 load_dotenv()
 
-# Configuração da API da OpenAI
+
 api_key = os.environ.get('OPENAI_API_KEY')
 client = openai.Client(api_key=api_key)
 
-# Configuração das credenciais do Google
+
 credentials_path = os.environ.get('GOOGLE_CREDENTIALS_PATH')
 credentials = service_account.Credentials.from_service_account_file(
     credentials_path,
     scopes=['https://www.googleapis.com/auth/calendar']
 )
 
-# Funções Disponíveis
+
 def get_current_date():
     """Returns the current date in YYYY-MM-DD format."""
     data = datetime.datetime.date(datetime.datetime.now())
@@ -150,7 +150,7 @@ def remove_google_calendar_event(event_id, calendar_id='primary'):
     except Exception as e:
         return f"Error removing event: {e}"
 
-# Contexto da Conversa e Funcionalidades
+
 prompt = """
 You are a virtual assistant capable of scheduling, removing, and checking appointments on a Google Calendar. Respond politely and professionally, using complete sentences and a friendly tone.
 
@@ -323,7 +323,7 @@ def generate_response(messages):
 
     return response.choices[0].message.content
 
-# Loop da Conversa
+
 def start_conversation():
     print("Chatbot started! Type your questions or 'exit' to quit.")
     while True:
